@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="false">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="false"
+    tools:context="com.example.kwong4.kwong4_habittracker.Add_Habits">
 
     <TextView
         android:layout_width="wrap_content"
@@ -107,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/friday"
-        android:id="@+id/check_Fri"
+        android:id="@+id/checkBox_Fri"
         android:checked="false"
         android:layout_alignTop="@+id/checkBox_Thurs"
         android:layout_alignEnd="@+id/checkBox_Tues" />
@@ -118,7 +120,7 @@
         android:text="@string/saturday"
         android:id="@+id/checkBox_Sat"
         android:checked="false"
-        android:layout_alignTop="@+id/check_Fri"
+        android:layout_alignTop="@+id/checkBox_Fri"
         android:layout_alignStart="@+id/checkBox_Wed" />
 
     <CheckBox
@@ -130,5 +132,14 @@
         android:layout_marginTop="17dp"
         android:layout_below="@+id/checkBox_Thurs"
         android:layout_toEndOf="@+id/Date_input_title" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:id="@+id/Add_Button"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/checkBox_Sun"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -1,8 +1,11 @@
 package com.example.kwong4.kwong4_habittracker;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -27,7 +30,7 @@ public class HabitActivity extends Activity {
 
     private static final String HABITFILE = "habits.sav";
     private EditText current_text;
-    private ListView current_view;
+    private ListView list_habits;
 
     private HabitList habitlist = new HabitList();
 
@@ -36,14 +39,35 @@ public class HabitActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button save_button = (Button) findViewById(R.id.Add_Habit);
+        Button history_button = (Button) findViewById(R.id.HistorySwap);
+        list_habits = (ListView) findViewById(R.id.Habit_List);
+
+        save_button.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                Intent intent = new Intent(HabitActivity.this, Add_Habits.class);
+                startActivity(intent);
+            }
+        });
+
+        history_button.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                Intent intent = new Intent(HabitActivity.this, Modify_History.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         load_habits_from_file();
-        adapter = new ArrayAdapter<Habit>(this, R.id.Habit_List);
-
+        adapter = new ArrayAdapter<Habit>(this, R.layout.habit_layout);
     }
 
     private void load_habits_from_file() {

@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.kwong4.kwong4_habittracker.MainActivity">
+    tools:context="com.example.kwong4.kwong4_habittracker.HabitActivity">
 
     <ListView
         android:layout_width="wrap_content"
@@ -35,13 +35,12 @@
         android:layout_alignBottom="@+id/Add_Habit"
         android:layout_alignStart="@+id/Habit_List" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/history"
-        android:id="@+id/History_title1"
-        android:layout_marginEnd="35dp"
-        android:layout_alignTop="@+id/Habit_title1"
+        android:text="@string/History"
+        android:id="@+id/HistorySwap"
+        android:layout_marginEnd="39dp"
+        android:layout_above="@+id/Habit_List"
         android:layout_toStartOf="@+id/Add_Habit" />
 </RelativeLayout>

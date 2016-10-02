@@ -12,6 +12,6 @@
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
     <string name="habit_tracker">Habit Tracker</string>
-    <string name="history">History</string>
+    <string name="History">History</string>
     <string name="Plus">+</string>
 </resources>
