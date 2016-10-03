@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.kwong4.kwong4_habittracker.HabitActivity">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Habit_List"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Add_Habit"
+        />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Plus"
+        android:id="@+id/Add_Habit"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/Habit_List"
+        android:onClick="add_habit_button" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/habit_tracker"
+        android:id="@+id/Habit_title1"
+        android:layout_alignBaseline="@+id/Add_Habit"
+        android:layout_alignBottom="@+id/Add_Habit"
+        android:layout_alignStart="@+id/Habit_List" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/History"
+        android:id="@+id/HistorySwap"
+        android:onClick="history_button"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/Habit_title1"
+        android:layout_marginStart="20dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:id="@+id/Edit_button"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/HistorySwap"
+        android:onClick="edit_button" />
+</RelativeLayout>

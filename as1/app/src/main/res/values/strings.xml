@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Kwong4-HabitTracker</string>
+    <string name="name">Name:</string>
+    <string name="adding_a_habit">Adding a Habit</string>
+    <string name="date">Date:</string>
+    <string name="days">Days:</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="habit_tracker">Habit Tracker</string>
+    <string name="History">History</string>
+    <string name="Plus">+</string>
+    <string name="edit_habits">Edit Habits</string>
+    <string name="count_toggle">Count Toggle</string>
+</resources>

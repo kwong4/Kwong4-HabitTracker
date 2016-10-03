@@ -17,10 +17,14 @@ import java.util.Date;
 
 /**
  * Created by Wookiez on 9/28/2016.
- * Copyright (C) 2016  Kevin Wong
- * Note: Credit is given to Abram Hindle for inspiration from his code
- * on lonelyTwitter and StudentPicker Series, as well as stackoverflow questions
- * that were referenced.
+ * Notes: - Need to create UML
+ *        - DO Unit Tests
+ *        - Make a README
+ *        - Make Visual sticking for completion after one day.
+ *        - Apply Repeat day tracking
+ *        - APK file
+ *        - Check that it works on lab machine (optional)
+ *        - Right files in folders
  */
 public class HabitActivity extends Activity {
 
