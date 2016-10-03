@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/Habit_List"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Add_Habit" />
+        android:layout_below="@+id/Add_Habit"
+        />
 
     <Button
         style="?android:attr/buttonStyleSmall"

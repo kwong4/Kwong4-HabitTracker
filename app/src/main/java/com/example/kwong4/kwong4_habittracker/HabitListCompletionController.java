@@ -9,11 +9,10 @@ public class HabitListCompletionController {
 
     //Lazy Singleton
     private static HabitList habitlist = null;
-    private static final String HABITFILE_COMPLETION = "habits_completed.sav";
     static public HabitList getHabitList() {
         if (habitlist == null) {
             try {
-                habitlist = HabitListManager.getHabitListManager().loadHabitList();
+                habitlist = HabitListCompletionManager.getHabitListManager().loadHabitList();
                 habitlist.addListener(new Listener() {
                     @Override
                     public void update() {
@@ -29,7 +28,7 @@ public class HabitListCompletionController {
     }
 
     static public void saveHabitList() {
-        HabitListManager.getHabitListManager().saveHabitList(getHabitList());
+        HabitListCompletionManager.getHabitListManager().saveHabitList(getHabitList());
     }
 
     public void addHabit(Habit habit) {

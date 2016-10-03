@@ -18,9 +18,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/History_list_view"
-        android:layout_marginTop="24dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/History_title"
-        android:layout_alignParentTop="false"
-        android:layout_alignTop="@+id/History_title" />
+        android:layout_below="@+id/History_title" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/count_toggle"
+        android:id="@+id/count_switch"
+        android:checked="false"
+        android:layout_marginEnd="29dp"
+        android:layout_above="@+id/History_list_view"
+        android:layout_alignParentEnd="true"
+        android:onClick="count_toggle" />
 
 </RelativeLayout>

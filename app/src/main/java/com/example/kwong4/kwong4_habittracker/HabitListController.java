@@ -9,7 +9,6 @@ public class HabitListController {
 
     //Lazy Singleton
     private static HabitList habitlist = null;
-    private static final String HABITFILE = "habits.sav";
     static public HabitList getHabitList() {
         if (habitlist == null) {
             try {

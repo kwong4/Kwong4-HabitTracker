@@ -13,6 +13,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Created by Wookiez on 9/28/2016.
@@ -26,6 +27,7 @@ public class HabitActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         HabitListManager.initManager(this.getApplicationContext());
+        HabitListCompletionManager.initManager(this.getApplicationContext());
         ListView habit_listview = (ListView) findViewById(R.id.Habit_List);
         final ArrayList<Habit> current_habit_list = new ArrayList<Habit>(HabitListController.getHabitList().get_Habits());
         final ArrayAdapter<Habit> habit_listAdapter = new ArrayAdapter<Habit>(this, R.layout.habit_layout, current_habit_list);
@@ -47,7 +49,7 @@ public class HabitActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Toast.makeText(HabitActivity.this, current_habit_list.get(position).toString() + " is marked complete.", Toast.LENGTH_SHORT).show();
                 Habit marked_habit = current_habit_list.get(position);
-                //Add to completed list.
+                HabitListCompletionController.getHabitList().add(new Habit(new Date(), marked_habit.getName(), marked_habit.getDays()));
             }
         });
     }
