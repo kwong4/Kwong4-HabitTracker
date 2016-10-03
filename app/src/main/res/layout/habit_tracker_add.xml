@@ -140,6 +140,7 @@
         android:id="@+id/Add_Button"
         android:layout_marginTop="16dp"
         android:layout_below="@+id/checkBox_Sun"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="add_habit" />
 
 </RelativeLayout>
