@@ -33,3 +33,12 @@ Sorry if that was extra information. Just wanted to make sure all the informatio
 So, for the app - I have made a Habit-Tracker. Once the app is launched, you will come up to a menu with the option to add, modify, and check the history of completed habits. You are first given a screen with a list of habits (defined by the user). Then you would click on any of the habits listed to mark them complete. TO add habits, you click on the "+" icon and you will be directed to a page where you have to fill out information bout the Name of the Habit, the starting Date of the Habit and the repeating days of the habit. Once you have filled it out and added the habit, you can hit "Back" and return to the screen where you can mark them as complete. Then you can hit the "Edit" button to click on any of the defined habits you made to delete them. You can hit back and finally take a look at the recently completed habits and count per habit in the "History" Tab.
 
 Note: Credit is given to Abram Hindle for inspiration from his code on lonelyTwitter and StudentPicker Series, as well as stackoverflow questions that were referenced.
+
+Quick overview of main classes:
+Activities: Add_Habits, HabitActivity, Modify_Habits, Modify_History
+Adapters: CompletionViewAdapters, CountViewAdapter
+Main object classes: Habit, HabitList
+Controllers: HabitListController, HabitListCompletionController
+Managers: HabitListManager, HabitListCompletionManager
+
+Activies were the location where the user visits for layout and direction. Adapters were used to monitor list views and update any changes. Main object classes held the main information. Controllers were used to take change from user and modifications. Managers were used to fully load/write data so controllers did not need to.
