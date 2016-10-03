@@ -20,19 +20,14 @@ import java.util.Collection;
 public class HabitActivity extends Activity {
 
     private static final String HABITFILE = "habits.sav";
-    private EditText current_text;
-
-
-    private HabitList habitlist = new HabitList();
-
-    private ArrayAdapter<Habit> adapter;
+    private static final String HABITFILE_COMPLETION = "habits_completed.sav";
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         HabitListManager.initManager(this.getApplicationContext());
         ListView habit_listview = (ListView) findViewById(R.id.Habit_List);
-        final ArrayList<Habit> current_habit_list = new ArrayList<Habit>(HabitListController.getHabitList(HABITFILE).get_Habits());
+        final ArrayList<Habit> current_habit_list = new ArrayList<Habit>(HabitListController.getHabitList().get_Habits());
         final ArrayAdapter<Habit> habit_listAdapter = new ArrayAdapter<Habit>(this, R.layout.habit_layout, current_habit_list);
         habit_listview.setAdapter(habit_listAdapter);
 
@@ -50,7 +45,7 @@ public class HabitActivity extends Activity {
         habit_listview.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(HabitActivity.this, current_habit_list.get(position).toString() + " is marked complete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HabitActivity.this, current_habit_list.get(position).toString() + " is marked complete.", Toast.LENGTH_SHORT).show();
                 Habit marked_habit = current_habit_list.get(position);
                 //Add to completed list.
             }

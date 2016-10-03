@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class HabitListManager {
     private Context context;
     static private HabitListManager habitlistmanager = null;
+    private static final String HABITFILE = "habits.sav";
 
     public HabitListManager(Context context) {
         this.context = context;
@@ -43,9 +44,9 @@ public class HabitListManager {
         return habitlistmanager;
     }
 
-    public HabitList loadHabitList(String habitfile) {
+    public HabitList loadHabitList() {
         try {
-            FileInputStream fis = context.openFileInput(habitfile);
+            FileInputStream fis = context.openFileInput(HABITFILE);
             BufferedReader in  = new BufferedReader(new InputStreamReader(fis));
 
             Gson gson = new Gson();
@@ -63,9 +64,9 @@ public class HabitListManager {
         }
     }
 
-    public void saveHabitList(String habitfile, HabitList hl) {
+    public void saveHabitList(HabitList hl) {
         try {
-            FileOutputStream fos = context.openFileOutput(habitfile, 0);
+            FileOutputStream fos = context.openFileOutput(HABITFILE, 0);
 
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
 

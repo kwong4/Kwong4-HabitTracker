@@ -3,13 +3,13 @@ package com.example.kwong4.kwong4_habittracker;
 import java.util.ArrayList;
 
 /**
- * Created by Wookiez on 10/2/2016.
+ * Created by Wookiez on 10/3/2016.
  */
-public class HabitListController {
+public class HabitListCompletionController {
 
     //Lazy Singleton
     private static HabitList habitlist = null;
-    private static final String HABITFILE = "habits.sav";
+    private static final String HABITFILE_COMPLETION = "habits_completed.sav";
     static public HabitList getHabitList() {
         if (habitlist == null) {
             try {
