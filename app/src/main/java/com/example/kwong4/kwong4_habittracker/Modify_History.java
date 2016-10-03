@@ -9,5 +9,6 @@ public class Modify_History extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history);
+        HabitListManager.initManager(this.getApplicationContext());
     }
 }

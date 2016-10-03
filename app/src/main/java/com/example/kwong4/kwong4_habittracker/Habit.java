@@ -38,6 +38,10 @@ public class Habit {
         this.name = name;
     }
 
+    public String toString() {
+        return getName();
+    }
+
     public void setDays(ArrayList repeatDays) {
         this.repeatDays = repeatDays;
     }

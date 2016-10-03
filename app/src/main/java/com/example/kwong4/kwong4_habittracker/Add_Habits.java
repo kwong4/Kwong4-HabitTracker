@@ -38,7 +38,7 @@ public class Add_Habits extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.habit_tracker_add);
-
+        HabitListManager.initManager(this.getApplicationContext());
         EditText date = (EditText) findViewById(R.id.Date_input);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date current_date = new Date();
@@ -94,10 +94,7 @@ public class Add_Habits extends AppCompatActivity {
                     }
                     Habit custom_habit = new Habit(habit_date, habit_name, repeatDays);
                     Toast.makeText(Add_Habits.this, "Habit Added!", Toast.LENGTH_SHORT).show();
-                    //load_habits_from_file();
-                    //habitlist.add(custom_habit);
-                    //save_habits_to_file();
-
+                    HabitListController.getHabitList().add(custom_habit);
                 }
                 else {
                     Toast.makeText(Add_Habits.this, "Please select repeating Days", Toast.LENGTH_SHORT).show();
@@ -109,40 +106,6 @@ public class Add_Habits extends AppCompatActivity {
         } catch (ParseException ex) {
             EditText date = (EditText) findViewById(R.id.Date_input);
             date.setError("Invalid format. Please use format yyyy/MM/dd");
-        }
-    }
-    private void load_habits_from_file() {
-        try {
-            FileInputStream fis = openFileInput(HABITFILE);
-            BufferedReader in  = new BufferedReader(new InputStreamReader(fis));
-
-            Gson gson = new Gson();
-
-            //Code from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
-            Type listType = new TypeToken<ArrayList<Habit>>(){}.getType();
-            habitlist.setHabits((ArrayList<Habit>) gson.fromJson(in, listType));
-        } catch (FileNotFoundException e) {
-            habitlist.setHabits(new ArrayList<Habit>());
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-    }
-
-    private void save_habits_to_file() {
-        try {
-            FileOutputStream fos = openFileOutput(HABITFILE, 0);
-
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-
-            Gson gson = new Gson();
-            gson.toJson(habitlist.get_Habits(), out);
-            out.flush();
-
-            fos.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
-        } catch (IOException e) {
-            throw new RuntimeException();
         }
     }
 }

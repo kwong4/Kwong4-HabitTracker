@@ -4,24 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by Wookiez on 9/28/2016.
@@ -30,7 +21,7 @@ public class HabitActivity extends Activity {
 
     private static final String HABITFILE = "habits.sav";
     private EditText current_text;
-    private ListView list_habits;
+
 
     private HabitList habitlist = new HabitList();
 
@@ -39,69 +30,50 @@ public class HabitActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        HabitListManager.initManager(this.getApplicationContext());
+        ListView habit_listview = (ListView) findViewById(R.id.Habit_List);
+        final ArrayList<Habit> current_habit_list = new ArrayList<Habit>(HabitListController.getHabitList(HABITFILE).get_Habits());
+        final ArrayAdapter<Habit> habit_listAdapter = new ArrayAdapter<Habit>(this, R.layout.habit_layout, current_habit_list);
+        habit_listview.setAdapter(habit_listAdapter);
 
-        Button save_button = (Button) findViewById(R.id.Add_Habit);
-        Button history_button = (Button) findViewById(R.id.HistorySwap);
-        list_habits = (ListView) findViewById(R.id.Habit_List);
-
-        save_button.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                setResult(RESULT_OK);
-                Intent intent = new Intent(HabitActivity.this, Add_Habits.class);
-                startActivity(intent);
+        //Added a change observer
+        HabitListController.getHabitList().addListener(new Listener() {
+            @Override
+            public void update(){
+                current_habit_list.clear();
+                Collection<Habit> habit_collection = HabitListController.getHabitList().get_Habits();
+                current_habit_list.addAll(habit_collection);
+                habit_listAdapter.notifyDataSetChanged();
             }
         });
 
-        history_button.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                setResult(RESULT_OK);
-                Intent intent = new Intent(HabitActivity.this, Modify_History.class);
-                startActivity(intent);
+        habit_listview.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Toast.makeText(HabitActivity.this, current_habit_list.get(position).toString() + " is marked complete", Toast.LENGTH_SHORT).show();
+                Habit marked_habit = current_habit_list.get(position);
+                //Add to completed list.
             }
         });
+    }
+
+    public void add_habit_button(View v) {
+        Intent intent = new Intent(HabitActivity.this, Add_Habits.class);
+        startActivity(intent);
+    }
+
+    public void history_button(View v) {
+        Intent intent = new Intent(HabitActivity.this, Modify_History.class);
+        startActivity(intent);
+    }
+
+    public void edit_button(View v) {
+        Intent intent = new Intent(HabitActivity.this, Modify_Habits.class);
+        startActivity(intent);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        load_habits_from_file();
-        adapter = new ArrayAdapter<Habit>(this, R.layout.habit_layout);
-    }
-
-    private void load_habits_from_file() {
-        try {
-            FileInputStream fis = openFileInput(HABITFILE);
-            BufferedReader in  = new BufferedReader(new InputStreamReader(fis));
-
-            Gson gson = new Gson();
-
-            //Code from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
-            Type listType = new TypeToken<ArrayList<Habit>>(){}.getType();
-            habitlist.setHabits((ArrayList<Habit>) gson.fromJson(in, listType));
-        } catch (FileNotFoundException e) {
-            habitlist.setHabits(new ArrayList<Habit>());
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-    }
-
-    private void save_habits_to_file() {
-        try {
-            FileOutputStream fos = openFileOutput(HABITFILE, 0);
-
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-
-            Gson gson = new Gson();
-            gson.toJson(habitlist.get_Habits(), out);
-            out.flush();
-
-            fos.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
     }
 }

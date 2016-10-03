@@ -9,17 +9,37 @@ import java.util.List;
  * Created by Wookiez on 9/28/2016.
  */
 public class HabitList {
-    List<Habit> habitlist = new ArrayList<Habit>();
+
+    protected List<Habit> habitlist;
+    protected ArrayList<Listener> listeners = null;
+    public HabitList() {
+        habitlist = new ArrayList<Habit>();
+        listeners = new ArrayList<Listener>();
+    }
+
+    public HabitList(ArrayList<Habit> habitlist) {
+        this.habitlist = habitlist;
+        this.listeners = new ArrayList<Listener>();
+    }
 
     public void add(Habit habit) {
         if (habitlist.contains(habit)) {
             throw new IllegalArgumentException("Duplicate Habit added.");
         }
         habitlist.add(habit);
+        notifyListeners();
     }
 
     public void delete(Habit habit) {
         habitlist.remove(habit);
+        notifyListeners();
+    }
+
+    private ArrayList<Listener> getListeners() {
+        if (listeners == null) {
+            listeners = new ArrayList<Listener>();
+        }
+        return listeners;
     }
 
     public int getCount() {
@@ -41,6 +61,7 @@ public class HabitList {
     public void setHabits(ArrayList<Habit> habitlist) {
         this.habitlist = habitlist;
     }
+
     public List<Habit> get_sorted_Habits() {
         ArrayList<Habit> templist = new ArrayList<Habit>();
         Collections.sort(templist, new Comparator<Habit>() {
@@ -49,5 +70,19 @@ public class HabitList {
             }
         });
         return templist;
+    }
+
+    public void notifyListeners() {
+        for (Listener listener : getListeners()) {
+            listener.update();
+        }
+    }
+
+    public void addListener(Listener l) {
+        getListeners().add(l);
+    }
+
+    public void removeListener(Listener l) {
+        getListeners().remove(l);
     }
 }

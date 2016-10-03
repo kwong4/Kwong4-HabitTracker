@@ -23,7 +23,8 @@
         android:text="@string/Plus"
         android:id="@+id/Add_Habit"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/Habit_List" />
+        android:layout_alignEnd="@+id/Habit_List"
+        android:onClick="add_habit_button" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,7 +41,18 @@
         android:layout_height="wrap_content"
         android:text="@string/History"
         android:id="@+id/HistorySwap"
-        android:layout_marginEnd="39dp"
-        android:layout_above="@+id/Habit_List"
-        android:layout_toStartOf="@+id/Add_Habit" />
+        android:onClick="history_button"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/Habit_title1"
+        android:layout_marginStart="20dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:id="@+id/Edit_button"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/HistorySwap"
+        android:onClick="edit_button" />
 </RelativeLayout>
